@@ -1,3 +1,32 @@
-<div>
-    
-</div>
+@if(!posts){
+    <!---Loading-->
+    <div class="loading">
+        <p>Cargando....</p>
+    </div>
+}
+@else{
+    <div class="container mt-5">
+        <h4 class="text-center">Publicaciones de usuarios</h4>
+        <div class="row d-flex">
+            <span>
+                <div class="col">
+                    @for(post of posts;track $index){
+                        <div class="card mb-4" style="width: 18rem;">
+                            <img src="{{url+'post/image/'+post.image}}" class="card-img-top w-50 mx-auto" alt="{{post.title}}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{post.title}}</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                                <a href="#" class="btn btn-primary">Ver</a>
+                                @if(identity.id==post.user_id){
+                                    <a class="btn btn-warning m-2" [routerLink]="['/editar-post',post.id]">Editar</a>
+                                    <button type="button" class="btn btn-danger">Eliminar</button>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </span>
+        </div>
+    </div>
+}

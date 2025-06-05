@@ -22,7 +22,7 @@
             <label>Seleccione la categoria</label>
             <select class="form-control" name="category_id" #category_id="ngModel" [(ngModel)]="post.category_id">
                 @for(cat of categories;track $index){
-                    <option value="{{cat.id}}">{{cat.name}}</option>
+                    <option value={{cat.id}}>{{cat.name}}</option>
                 }
             </select>
         </div>
@@ -37,6 +37,7 @@
                 <i>+</i>
             </button>{{filename || "Imagen no seleccionada"}}
         </div>
+        <input type="submit" value="Guardar" class="btn btn-success mt-4" (click)="onSubmit(newPostForm)" [disabled]="newPostForm.invalid">
     </form>
 
 </div>

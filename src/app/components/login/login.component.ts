@@ -3,6 +3,7 @@ import { User } from '../../models/user';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -29,6 +30,11 @@ export class LoginComponent {
           if(response.status!=401){
             sessionStorage.setItem('token',response.access_token)
             sessionStorage.setItem('identity',JSON.stringify(response.user))
+            let countdown=timer(50000);
+                countdown.subscribe(n=>{
+                  sessionStorage.removeItem('token')
+                  sessionStorage.removeItem('identity')
+                })
             this._router.navigate([''])
           }else{
             this.status=0

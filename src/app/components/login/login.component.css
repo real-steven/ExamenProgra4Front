@@ -1,0 +1,8 @@
+.card{
+    float: inline-start;
+    display:inline-flexbox; 
+    margin: 0.3em;   
+}
+.btn{
+    margin: 0.1em;
+}

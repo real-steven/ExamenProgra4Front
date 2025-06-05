@@ -47,6 +47,31 @@ export class NewPostComponent {
       }
     })
   }
+  onSubmit(form:any){
+    let identity=this.userService.getIdentity()
+    if(identity){
+      this.post.user_id=identity.id
+      this.post.category_id=+this.post.category_id
+      console.log(this.post)
+      this.postService.createPost(this.post,this.userService.getToken()).subscribe({
+        next:(response:any)=>{
+          if(response.generated_id){
+            this.status=0
+            form.reset()
+          }else{
+            this.status=1
+          }
+        },
+        error:(err:Error)=>{
+          this.status=1;
+        }
+      })
+    }{
+      //Enviar un mensaje de error Debe volver a loguearse
+    }
+    
+  }
+
   uploadImage(e:any){
     const file:File =e.target.files[0]
     if(file){
@@ -62,7 +87,7 @@ export class NewPostComponent {
 
         },
         error:()=>{
-
+          this.post.image="noimage.png"
         }
       })
 

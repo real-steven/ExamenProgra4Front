@@ -12,6 +12,6 @@ export const routes: Routes = [
     {path:'crear-categoria',component:NewCategoryComponent},
     {path:'registro',component:RegisterComponent},
     {path:'crear-post',component:NewPostComponent},
-    
+    {path:'categoria/:id',component:HomeComponent},
     {path:'**',component:ErrorComponent}
 ];
