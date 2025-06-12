@@ -40,6 +40,13 @@
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['/crear-post']">Publicar</a>
             </li>
+            <li class="nav-item dropdown">
+                <a class="navbar-link dropdown-toggle none-decorate" id="nav-drop" data-ds-toggle="dropdown" aria-expanded="false">{{identity.name}}</a>
+                <div class="dropdown-menu" aria-describedby="nav-drop">
+                  <a class="dropdown-item">Configuración usuarios</a>
+                  <a class="dropdown-item">Cambio de clave</a> 
+                </div>
+            </li>
           }
          
         </ul>

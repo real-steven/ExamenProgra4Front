@@ -17,9 +17,9 @@
                                 <h5 class="card-title">{{post.title}}</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
                                 <a href="#" class="btn btn-primary">Ver</a>
-                                @if(identity.id==post.user_id){
+                                @if(identity && identity.id==post.user_id){
                                     <a class="btn btn-warning m-2" [routerLink]="['/editar-post',post.id]">Editar</a>
-                                    <button type="button" class="btn btn-danger">Eliminar</button>
+                                    <button type="button" class="btn btn-danger" (click)="openModal(post.id)" >Eliminar</button>
                                 }
                             </div>
                         </div>
@@ -28,5 +28,22 @@
                 </div>
             </span>
         </div>
+    </div>
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmar eliminación</h5>
+                </div>
+                <div class="modal-body">
+                    <p>¿Esta seguro de eliminar el registro?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" (click)="deletePost()">Borrar</button>
+                    <button type="button" class="btn btn-secundary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 }

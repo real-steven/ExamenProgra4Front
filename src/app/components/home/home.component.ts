@@ -6,6 +6,8 @@ import { PostService } from '../../services/post.service';
 import { server } from '../../services/global';
 import { UserService } from '../../services/user.service';
 
+declare var bootstrap:any
+
 @Component({
   selector: 'app-home',
   imports: [RouterLink],
@@ -16,6 +18,7 @@ export class HomeComponent {
   public posts:Array<Post>
   public url:string
   public identity:any
+  private postId:number
   constructor(
     private postService:PostService,
     private userService:UserService,
@@ -26,6 +29,7 @@ export class HomeComponent {
     this.url=server.url
     this.identity=this.userService.getIdentity()
     this.loadPosts()
+    this.postId=-1
   }
   loadPosts(){
     let idCat
@@ -62,6 +66,19 @@ export class HomeComponent {
         console.log(err)
       }
     })
+  }
+  openModal(id:number):void{
+    this.postId=id
+    const modelDOM=document.getElementById('deleteModal')
+    const modal= new bootstrap.Modal(modelDOM)
+    
+    modal.show()
+  }
+  deletePost(){
+    console.log(this.postId)
+    //Llamamos al metodo eliminar del postService
+    const modalDOM=document.getElementById('deleteModal')
+    modalDOM?.setAttribute("data-bs-dismiss","modal")
   }
 
 }
