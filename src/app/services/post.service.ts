@@ -36,4 +36,19 @@ import { Post } from "../models/post";
         return this.http.get(this.url+"post/cat/"+idCat)
     }
 
+getPostsByUser(userId: string): Observable<any> {
+    return this.http.get(this.url + 'post-user/' + userId);
+}
+
+searchPosts(term: string): Observable<any> {
+    const url = `${this.url}posts/search?q=${encodeURIComponent(term)}`;
+    console.log(url); // Para depurar la URL
+    return this.http.get(url);
+}
+
+deletePost(id: number): Observable<any> {
+    // El backend espera DELETE a /posts/deleted/:id
+    return this.http.delete(this.url + 'posts/deleted/' + id);
+}
+
 }

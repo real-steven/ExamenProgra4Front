@@ -30,7 +30,7 @@ export class LoginComponent {
           if(response.status!=401){
             sessionStorage.setItem('token',response.access_token)
             sessionStorage.setItem('identity',JSON.stringify(response.user))
-            let countdown=timer(50000);
+            let countdown=timer(5000000000);
                 countdown.subscribe(n=>{
                   sessionStorage.removeItem('token')
                   sessionStorage.removeItem('identity')
